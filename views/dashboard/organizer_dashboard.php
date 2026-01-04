@@ -8,13 +8,13 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: login.html');
+    header('Location: ../auth/login.html');
     exit();
 }
 
 // Check if user is organizer
 if ($_SESSION['role'] !== 'organizer') {
-    header('Location: attendee_dashboard.php');
+    header('Location: ../dashboard/attendee_dashboard.php');
     exit();
 }
 
@@ -27,7 +27,7 @@ $first_name = $_SESSION['first_name'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub - Organizer Dashboard</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .dashboard-section {
@@ -135,17 +135,17 @@ $first_name = $_SESSION['first_name'];
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="events.php">Events</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                    <li><a href="create_event.php">Create Event</a></li>
-                    <li><a href="my_events.php">My Events</a></li>
+                    <li><a href="views/about.html">About</a></li>
+                    <li><a href="views/events/events.php">Events</a></li>
+                    <li><a href="views/contact.html">Contact Us</a></li>
+                    <li><a href="views/events/create_event.php">Create Event</a></li>
+                    <li><a href="views/events/my_events.php">My Events</a></li>
                 </ul>
                 <div class="user-menu">
                     <span class="user-greeting">Hi, <?php echo htmlspecialchars($first_name); ?> <i class="fas fa-chevron-down"></i></span>
                     <div class="dropdown-menu">
-                        <a href="organizer_dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                        <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
+                        <a href="views/dashboard/organizer_dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="views/profile.php"><i class="fas fa-user"></i> Profile</a>
                         <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>
@@ -210,15 +210,15 @@ $first_name = $_SESSION['first_name'];
             <div class="quick-actions">
                 <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
                 <div class="action-buttons">
-                    <a href="create_event.php" class="action-btn primary">
+                    <a href="views/events/create_event.php" class="action-btn primary">
                         <i class="fas fa-plus-circle"></i>
                         <span>Create New Event</span>
                     </a>
-                    <a href="my_events.php" class="action-btn">
+                    <a href="views/events/my_events.php" class="action-btn">
                         <i class="fas fa-list"></i>
                         <span>Manage Events</span>
                     </a>
-                    <a href="profile.php" class="action-btn">
+                    <a href="views/profile.php" class="action-btn">
                         <i class="fas fa-user-edit"></i>
                         <span>Edit Profile</span>
                     </a>
@@ -236,10 +236,10 @@ $first_name = $_SESSION['first_name'];
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../public/js/script.js"></script>
     <script>
         // Load dashboard statistics
-        fetch('get_dashboard_stats.php')
+        fetch('../api/get_dashboard_stats.php')
             .then(response => response.json())
             .then(data => {
                 if (data.success && data.stats) {

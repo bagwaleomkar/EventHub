@@ -8,7 +8,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: login.html');
+    header('Location: ../auth/login.html');
     exit();
 }
 
@@ -24,7 +24,7 @@ $isOrganizer = ($role === 'organizer');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub - My Profile</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .profile-section {
@@ -117,19 +117,19 @@ $isOrganizer = ($role === 'organizer');
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="events.php">Events</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="views/about.html">About</a></li>
+                    <li><a href="views/events/events.php">Events</a></li>
+                    <li><a href="views/contact.html">Contact Us</a></li>
                     <?php if ($isOrganizer): ?>
-                    <li><a href="create_event.php">Create Event</a></li>
+                    <li><a href="views/events/create_event.php">Create Event</a></li>
                     <?php endif; ?>
-                    <li><a href="my_events.php">My Events</a></li>
+                    <li><a href="views/events/my_events.php">My Events</a></li>
                 </ul>
                 <div class="user-menu">
                     <span class="user-greeting">Hi, <?php echo htmlspecialchars($first_name); ?> <i class="fas fa-chevron-down"></i></span>
                     <div class="dropdown-menu">
                         <a href="<?php echo $isOrganizer ? 'organizer_dashboard.php' : 'attendee_dashboard.php'; ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                        <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
+                        <a href="views/profile.php"><i class="fas fa-user"></i> Profile</a>
                         <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>
@@ -193,6 +193,6 @@ $isOrganizer = ($role === 'organizer');
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../public/js/script.js"></script>
 </body>
 </html>

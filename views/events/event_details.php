@@ -5,13 +5,13 @@
  */
 
 session_start();
-require_once 'config/database.php';
+require_once __DIR__ . '/../../config/database.php';
 
 // Get event ID from URL
 $event_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
 if ($event_id <= 0) {
-    header('Location: events.php');
+    header('Location: ../events/events.php');
     exit();
 }
 
@@ -44,7 +44,7 @@ if ($conn) {
         $event = $stmt->fetch(PDO::FETCH_ASSOC);
         
         if (!$event) {
-            header('Location: events.php?error=event_not_found');
+            header('Location: ../events/events.php?error=event_not_found');
             exit();
         }
         
@@ -71,11 +71,11 @@ if ($conn) {
         
     } catch (PDOException $e) {
         error_log("Error fetching event details: " . $e->getMessage());
-        header('Location: events.php?error=database_error');
+        header('Location: ../events/events.php?error=database_error');
         exit();
     }
 } else {
-    header('Location: events.php?error=connection_failed');
+    header('Location: ../events/events.php?error=connection_failed');
     exit();
 }
 
@@ -94,7 +94,7 @@ function formatEventTime($time) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo htmlspecialchars($event['event_name']); ?> - EventHub</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../public/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .event-details-section {
@@ -249,14 +249,14 @@ function formatEventTime($time) {
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html">About</a></li>
-                    <li><a href="events.php">Events</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="views/about.html">About</a></li>
+                    <li><a href="views/events/events.php">Events</a></li>
+                    <li><a href="views/contact.html">Contact Us</a></li>
                     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
                         <?php if ($_SESSION['role'] === 'organizer'): ?>
-                            <li><a href="create_event.php">Create Event</a></li>
+                            <li><a href="views/events/create_event.php">Create Event</a></li>
                         <?php endif; ?>
-                        <li><a href="my_events.php">My Events</a></li>
+                        <li><a href="views/events/my_events.php">My Events</a></li>
                     <?php endif; ?>
                 </ul>
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
@@ -264,13 +264,13 @@ function formatEventTime($time) {
                         <span class="user-greeting">Hi, <?php echo htmlspecialchars($_SESSION['first_name']); ?> <i class="fas fa-chevron-down"></i></span>
                         <div class="dropdown-menu">
                             <a href="<?php echo ($_SESSION['role'] === 'organizer') ? 'organizer_dashboard.php' : 'attendee_dashboard.php'; ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                            <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
+                            <a href="views/profile.php"><i class="fas fa-user"></i> Profile</a>
                             <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </div>
                 <?php else: ?>
                     <div class="register-btn">
-                        <a href="register.html" class="btn">Register</a>
+                        <a href="views/auth/register.html" class="btn">Register</a>
                     </div>
                 <?php endif; ?>
                 <div class="hamburger">
@@ -337,11 +337,11 @@ function formatEventTime($time) {
                                 </button>
                             <?php endif; ?>
                         <?php else: ?>
-                            <a href="login.html" class="btn-register">
+                            <a href="views/auth/login.html" class="btn-register">
                                 <i class="fas fa-sign-in-alt"></i> Login to Register
                             </a>
                         <?php endif; ?>
-                        <a href="events.php" class="btn-back">
+                        <a href="views/events/events.php" class="btn-back">
                             <i class="fas fa-arrow-left"></i> Back to Events
                         </a>
                     </div>
@@ -387,14 +387,14 @@ function formatEventTime($time) {
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="../public/js/script.js"></script>
     <script>
         function registerForEvent(eventId) {
             const btn = document.getElementById('registrationBtn');
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Registering...';
             
-            fetch('register_for_event.php', {
+            fetch('../../handlers/register_for_event.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -431,7 +431,7 @@ function formatEventTime($time) {
             btn.disabled = true;
             btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cancelling...';
             
-            fetch('register_for_event.php', {
+            fetch('../../handlers/register_for_event.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
