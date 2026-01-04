@@ -10,7 +10,7 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: ../auth/login.html');
+    header('Location: login.html');
     exit();
 }
 
@@ -21,7 +21,7 @@ $user_id = $_SESSION['user_id'];
 $isOrganizer = ($role === 'organizer');
 
 // Connect to database
-require_once __DIR__ . '/../../config/database.php';
+require_once 'config/database.php';
 $database = new Database();
 $conn = $database->getConnection();
 
@@ -61,7 +61,7 @@ if ($conn !== null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub - My Events</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .my-events-section {
@@ -212,19 +212,19 @@ if ($conn !== null) {
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="views/about.html">About</a></li>
-                    <li><a href="views/events/events.php">Events</a></li>
-                    <li><a href="views/contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.php">Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                     <?php if ($isOrganizer): ?>
-                    <li><a href="views/events/create_event.php">Create Event</a></li>
+                    <li><a href="create_event.php">Create Event</a></li>
                     <?php endif; ?>
-                    <li><a href="views/events/my_events.php" class="active">My Events</a></li>
+                    <li><a href="my_events.php" class="active">My Events</a></li>
                 </ul>
                 <div class="user-menu">
                     <span class="user-greeting">Hi, <?php echo htmlspecialchars($first_name); ?> <i class="fas fa-chevron-down"></i></span>
                     <div class="dropdown-menu">
                         <a href="<?php echo $isOrganizer ? 'organizer_dashboard.php' : 'attendee_dashboard.php'; ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                        <a href="views/profile.php"><i class="fas fa-user"></i> Profile</a>
+                        <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
                         <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>
@@ -292,7 +292,7 @@ if ($conn !== null) {
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
                                     <?php else: ?>
-                                        <a href="views/events/event_details.php?id=<?php echo $event['id']; ?>" class="btn-view">
+                                        <a href="event_details.php?id=<?php echo $event['id']; ?>" class="btn-view">
                                             <i class="fas fa-eye"></i> View Details
                                         </a>
                                     <?php endif; ?>
@@ -319,7 +319,7 @@ if ($conn !== null) {
         </div>
     </footer>
 
-    <script src="../public/js/script.js"></script>
+    <script src="script.js"></script>
     <script>
         function deleteEvent(eventId, eventName) {
             if (!confirm(`Are you sure you want to delete "${eventName}"?\n\nThis action cannot be undone.`)) {

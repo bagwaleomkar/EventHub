@@ -1,53 +1,6 @@
 // EventHub - JavaScript Functionality
 
 // ==========================================
-// PATH CONFIGURATION
-// ==========================================
-const PathConfig = {
-    // Determine the base path based on current location
-    getBasePath: function() {
-        const path = window.location.pathname;
-        if (path.includes('/views/')) {
-            return '../..';
-        } else if (path.includes('/public/')) {
-            return '..';
-        }
-        return '.';
-    },
-    
-    // Get path to specific resource
-    get: function(resource) {
-        const base = this.getBasePath();
-        const paths = {
-            // Views
-            'login': `${base}/views/auth/login.html`,
-            'register': `${base}/views/auth/register.html`,
-            'events': `${base}/views/events/events.php`,
-            'event_details': `${base}/views/events/event_details.php`,
-            'my_events': `${base}/views/events/my_events.php`,
-            'create_event': `${base}/views/events/create_event.php`,
-            'attendee_dashboard': `${base}/views/dashboard/attendee_dashboard.php`,
-            'organizer_dashboard': `${base}/views/dashboard/organizer_dashboard.php`,
-            'profile': `${base}/views/profile.php`,
-            'about': `${base}/views/about.html`,
-            'contact': `${base}/views/contact.html`,
-            'index': `${base}/index.html`,
-            
-            // API endpoints
-            'api_check_session': `${base}/api/check_session.php`,
-            'api_check_registration': `${base}/api/check_registration.php`,
-            'api_dashboard_stats': `${base}/api/get_dashboard_stats.php`,
-            'api_registered_events': `${base}/api/get_registered_events.php`,
-            
-            // Handlers
-            'handler_register_event': `${base}/handlers/register_for_event.php`,
-            'handler_logout': `${base}/handlers/logout.php`,
-        };
-        return paths[resource] || resource;
-    }
-};
-
-// ==========================================
 // 1. REGISTER PAGE - TAB SWITCHING
 // ==========================================
 document.addEventListener('DOMContentLoaded', function() {
@@ -404,7 +357,7 @@ function checkPasswordStrength(password) {
 // ==========================================
 async function checkLoginStatus() {
     try {
-        const response = await fetch(PathConfig.get('api_check_session'));
+        const response = await fetch('check_session.php');
         const data = await response.json();
         
         const registerBtn = document.querySelector('.register-btn');
@@ -415,16 +368,14 @@ async function checkLoginStatus() {
                 const userMenu = document.createElement('div');
                 userMenu.className = 'user-menu';
                 
-                const dashboardLink = data.role === 'organizer' ? 
-                    PathConfig.get('organizer_dashboard') : 
-                    PathConfig.get('attendee_dashboard');
+                const dashboardLink = data.role === 'organizer' ? 'organizer_dashboard.php' : 'attendee_dashboard.php';
                 
                 userMenu.innerHTML = `
                     <span class="user-greeting">Hi, ${data.first_name} <i class="fas fa-chevron-down"></i></span>
                     <div class="dropdown-menu">
                         <a href="${dashboardLink}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                        <a href="${PathConfig.get('profile')}"><i class="fas fa-user"></i> Profile</a>
-                        <a href="${PathConfig.get('handler_logout')}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
+                        <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 `;
                 
@@ -452,20 +403,20 @@ async function checkLoginStatus() {
             
             // Update navigation links based on role
             const navLinks = document.querySelector('.nav-links');
-            if (navLinks && !document.querySelector('.nav-links a[href*="my_events"]')) {
+            if (navLinks && !document.querySelector('.nav-links a[href="my_events.php"]')) {
                 if (data.role === 'organizer') {
                     // Add organizer-specific links
                     const createEventLi = document.createElement('li');
-                    createEventLi.innerHTML = `<a href="${PathConfig.get('create_event')}">Create Event</a>`;
+                    createEventLi.innerHTML = '<a href="create_event.php">Create Event</a>';
                     navLinks.appendChild(createEventLi);
                     
                     const myEventsLi = document.createElement('li');
-                    myEventsLi.innerHTML = `<a href="${PathConfig.get('my_events')}">My Events</a>`;
+                    myEventsLi.innerHTML = '<a href="my_events.php">My Events</a>';
                     navLinks.appendChild(myEventsLi);
                 } else {
                     // Add attendee-specific links
                     const myEventsLi = document.createElement('li');
-                    myEventsLi.innerHTML = `<a href="${PathConfig.get('my_events')}">My Events</a>`;
+                    myEventsLi.innerHTML = '<a href="my_events.php">My Events</a>';
                     navLinks.appendChild(myEventsLi);
                 }
             }
@@ -473,9 +424,9 @@ async function checkLoginStatus() {
             // User not logged in - show Register button (already in HTML)
             // Make sure Login link exists
             const nav = document.querySelector('.nav-links');
-            if (nav && !document.querySelector('.nav-links a[href*="login"]')) {
+            if (nav && !document.querySelector('.nav-links a[href="login.html"]')) {
                 const loginLi = document.createElement('li');
-                loginLi.innerHTML = `<a href="${PathConfig.get('login')}">Login</a>`;
+                loginLi.innerHTML = '<a href="login.html">Login</a>';
                 nav.appendChild(loginLi);
             }
         }

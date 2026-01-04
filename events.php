@@ -4,7 +4,7 @@
  */
 
 session_start(); // Start session for user status check
-require_once __DIR__ . '/../../config/database.php';
+require_once 'config/database.php';
 
 // Get database connection
 $database = new Database();
@@ -58,7 +58,7 @@ function formatEventTime($time) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub - Events</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .events-hero {
@@ -201,14 +201,14 @@ function formatEventTime($time) {
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="views/about.html">About</a></li>
-                    <li><a href="views/events/events.php" class="active">Events</a></li>
-                    <li><a href="views/contact.html">Contact Us</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.php" class="active">Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                     <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
                         <?php if ($_SESSION['role'] === 'organizer'): ?>
-                            <li><a href="views/events/create_event.php">Create Event</a></li>
+                            <li><a href="create_event.php">Create Event</a></li>
                         <?php endif; ?>
-                        <li><a href="views/events/my_events.php">My Events</a></li>
+                        <li><a href="my_events.php">My Events</a></li>
                     <?php endif; ?>
                 </ul>
                 <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
@@ -216,13 +216,13 @@ function formatEventTime($time) {
                         <span class="user-greeting">Hi, <?php echo htmlspecialchars($_SESSION['first_name']); ?> <i class="fas fa-chevron-down"></i></span>
                         <div class="dropdown-menu">
                             <a href="<?php echo ($_SESSION['role'] === 'organizer') ? 'organizer_dashboard.php' : 'attendee_dashboard.php'; ?>"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                            <a href="views/profile.php"><i class="fas fa-user"></i> Profile</a>
+                            <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
                             <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                         </div>
                     </div>
                 <?php else: ?>
                     <div class="register-btn">
-                        <a href="views/auth/register.html" class="btn">Register</a>
+                        <a href="register.html" class="btn">Register</a>
                     </div>
                 <?php endif; ?>
                 <div class="hamburger">
@@ -290,7 +290,7 @@ function formatEventTime($time) {
                                             }
                                         ?>
                                     </div>
-                                    <a href="views/events/event_details.php?id=<?php echo $event['id']; ?>" class="view-details-btn">
+                                    <a href="event_details.php?id=<?php echo $event['id']; ?>" class="view-details-btn">
                                         View Details
                                     </a>
                                 </div>
@@ -328,10 +328,10 @@ function formatEventTime($time) {
                     <h3>Quick Links</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="views/about.html">About Us</a></li>
-                        <li><a href="views/events/events.php">Events</a></li>
-                        <li><a href="views/contact.html">Contact</a></li>
-                        <li><a href="views/auth/register.html">Register</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.php">Events</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="register.html">Register</a></li>
                     </ul>
                 </div>
                 
@@ -360,6 +360,6 @@ function formatEventTime($time) {
         </div>
     </footer>
 
-    <script src="../public/js/script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>

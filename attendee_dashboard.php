@@ -8,13 +8,13 @@ session_start();
 
 // Check if user is logged in
 if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    header('Location: ../auth/login.html');
+    header('Location: login.html');
     exit();
 }
 
 // Check if user is attendee
 if ($_SESSION['role'] !== 'attendee') {
-    header('Location: ../dashboard/organizer_dashboard.php');
+    header('Location: organizer_dashboard.php');
     exit();
 }
 
@@ -27,7 +27,7 @@ $first_name = $_SESSION['first_name'];
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EventHub - Attendee Dashboard</title>
-    <link rel="stylesheet" href="../public/css/styles.css">
+    <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .dashboard-section {
@@ -131,16 +131,16 @@ $first_name = $_SESSION['first_name'];
                 </div>
                 <ul class="nav-links">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="views/about.html">About</a></li>
-                    <li><a href="views/events/events.php">Events</a></li>
-                    <li><a href="views/contact.html">Contact Us</a></li>
-                    <li><a href="views/events/my_events.php">My Events</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.php">Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="my_events.php">My Events</a></li>
                 </ul>
                 <div class="user-menu">
                     <span class="user-greeting">Hi, <?php echo htmlspecialchars($first_name); ?> <i class="fas fa-chevron-down"></i></span>
                     <div class="dropdown-menu">
-                        <a href="views/dashboard/attendee_dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-                        <a href="views/profile.php"><i class="fas fa-user"></i> Profile</a>
+                        <a href="attendee_dashboard.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                        <a href="profile.php"><i class="fas fa-user"></i> Profile</a>
                         <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Logout</a>
                     </div>
                 </div>
@@ -215,15 +215,15 @@ $first_name = $_SESSION['first_name'];
             <div class="quick-actions">
                 <h2><i class="fas fa-bolt"></i> Quick Actions</h2>
                 <div class="action-buttons">
-                    <a href="views/events/events.php" class="action-btn">
+                    <a href="events.php" class="action-btn">
                         <i class="fas fa-search"></i>
                         <span>Browse Events</span>
                     </a>
-                    <a href="views/events/my_events.php" class="action-btn">
+                    <a href="my_events.php" class="action-btn">
                         <i class="fas fa-list"></i>
                         <span>My Events</span>
                     </a>
-                    <a href="views/profile.php" class="action-btn">
+                    <a href="profile.php" class="action-btn">
                         <i class="fas fa-user-edit"></i>
                         <span>Edit Profile</span>
                     </a>
@@ -241,10 +241,10 @@ $first_name = $_SESSION['first_name'];
         </div>
     </footer>
 
-    <script src="../public/js/script.js"></script>
+    <script src="script.js"></script>
     <script>
         // Load dashboard statistics
-        fetch('../api/get_dashboard_stats.php')
+        fetch('get_dashboard_stats.php')
             .then(response => response.json())
             .then(data => {
                 if (data.success && data.stats) {
@@ -257,7 +257,7 @@ $first_name = $_SESSION['first_name'];
             .catch(error => console.error('Error loading stats:', error));
         
         // Load registered events
-        fetch('../api/get_registered_events.php')
+        fetch('get_registered_events.php')
             .then(response => response.json())
             .then(data => {
                 const container = document.getElementById('registered-events-list');
@@ -272,7 +272,7 @@ $first_name = $_SESSION['first_name'];
                                 </p>
                             </div>
                             <div style="display: flex; gap: 10px;">
-                                <a href="views/events/event_details.php?id=${event.id}" class="btn" style="background: #4361EE; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 14px;">
+                                <a href="event_details.php?id=${event.id}" class="btn" style="background: #4361EE; color: white; padding: 8px 15px; border-radius: 5px; text-decoration: none; font-size: 14px;">
                                     <i class="fas fa-eye"></i> View
                                 </a>
                                 <button onclick="cancelRegistration(${event.id}, this)" class="btn" style="background: #dc3545; color: white; padding: 8px 15px; border-radius: 5px; border: none; cursor: pointer; font-size: 14px;">
@@ -282,7 +282,7 @@ $first_name = $_SESSION['first_name'];
                         </div>
                     `).join('');
                 } else {
-                    container.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">You haven\'t registered for any events yet. <a href="views/events/events.php" style="color: #4361EE;">Browse events</a></p>';
+                    container.innerHTML = '<p style="text-align: center; color: #999; padding: 20px;">You haven\'t registered for any events yet. <a href="events.php" style="color: #4361EE;">Browse events</a></p>';
                 }
             })
             .catch(error => {
@@ -298,7 +298,7 @@ $first_name = $_SESSION['first_name'];
             button.disabled = true;
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Cancelling...';
             
-            fetch('../../handlers/register_for_event.php', {
+            fetch('register_for_event.php', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: 'event_id=' + eventId + '&action=unregister'

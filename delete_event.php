@@ -7,7 +7,7 @@
 session_start();
 header('Content-Type: application/json');
 
-require_once __DIR__ . '/../../config/database.php';
+require_once 'config/database.php';
 require_once 'includes/functions.php';
 
 // Check if user is logged in
