@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EventHub - Register</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header & Navbar -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="assets/logo.png" alt="EventHub Logo">
+                    </a>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="events.php">Events</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+                <div class="register-btn">
+                    <a href="register.html" class="btn active">Register</a>
+                </div>
+                <div class="hamburger">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Register Hero Section -->
+    <section class="register-hero">
+        <div class="container">
+            <div class="register-hero-content">
+                <h1>Join <span>EventHub</span></h1>
+                <p>Create an account to discover, attend, and create amazing events</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Register Form Section -->
+    <section class="register-section">
+        <div class="container">
+            <div class="register-container">
+                <div class="register-options">
+                    <div class="register-tab active" data-tab="attendee">
+                        <i class="fas fa-user"></i>
+                        <span>Attendee</span>
+                    </div>
+                    <div class="register-tab" data-tab="organizer">
+                        <i class="fas fa-users-cog"></i>
+                        <span>Event Organizer</span>
+                    </div>
+                </div>
+
+                <div class="register-form-container">
+                    <!-- Attendee Registration Form -->
+                    <div class="register-form active" id="attendee-form">
+                        <h2>Register as an <span>Attendee</span></h2>
+                        <p>Discover and attend events that match your interests</p>
+                        
+                        <form id="attendeeRegForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="email">Email Address</label>
+                                <input type="email" id="email" name="email" placeholder="Your email address" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" placeholder="Create a password" required>
+                                <span class="password-requirements">Password must be at least 8 characters long with at least one uppercase letter, one lowercase letter, and one number</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="confirmPassword">Confirm Password</label>
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                            </div>
+                            
+                            <div class="form-group interests-group">
+                                <label>Interests (Select all that apply)</label>
+                                <div class="interests-container">
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="music" name="interests[]" value="music">
+                                        <label for="music">Music</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="tech" name="interests[]" value="tech">
+                                        <label for="tech">Technology</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="food" name="interests[]" value="food">
+                                        <label for="food">Food & Drink</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="arts" name="interests[]" value="arts">
+                                        <label for="arts">Arts & Culture</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="sports" name="interests[]" value="sports">
+                                        <label for="sports">Sports & Fitness</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="business" name="interests[]" value="business">
+                                        <label for="business">Business & Networking</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group terms-group">
+                                <div class="terms-checkbox">
+                                    <input type="checkbox" id="terms" name="terms" required>
+                                    <label for="terms">I agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a></label>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group newsletter-group">
+                                <div class="newsletter-checkbox">
+                                    <input type="checkbox" id="newsletter" name="newsletter">
+                                    <label for="newsletter">Subscribe to our newsletter for updates on events and offers</label>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Create Account</button>
+                        </form>
+                        
+                        <div class="or-divider">
+                            <span>OR</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button class="btn-social btn-google">
+                                <i class="fab fa-google"></i> Continue with Google
+                            </button>
+                            <button class="btn-social btn-facebook">
+                                <i class="fab fa-facebook-f"></i> Continue with Facebook
+                            </button>
+                        </div>
+                        
+                        <div class="login-link">
+                            <p>Already have an account? <a href="#">Log In</a></p>
+                        </div>
+                    </div>
+                    
+                    <!-- Organizer Registration Form -->
+                    <div class="register-form" id="organizer-form">
+                        <h2>Register as an <span>Organizer</span></h2>
+                        <p>Create and manage events with our powerful platform</p>
+                        
+                        <form id="organizerRegForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="orgFirstName">First Name</label>
+                                    <input type="text" id="orgFirstName" name="firstName" placeholder="Your first name" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="orgLastName">Last Name</label>
+                                    <input type="text" id="orgLastName" name="lastName" placeholder="Your last name" required>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="orgName">Organization Name</label>
+                                <input type="text" id="orgName" name="orgName" placeholder="Your organization's name" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="orgEmail">Email Address</label>
+                                <input type="email" id="orgEmail" name="email" placeholder="Your email address" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="orgPhone">Phone Number</label>
+                                <input type="tel" id="orgPhone" name="phone" placeholder="Your phone number" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="orgPassword">Password</label>
+                                <input type="password" id="orgPassword" name="password" placeholder="Create a password" required>
+                                <span class="password-requirements">Password must be at least 8 characters long with at least one uppercase letter, one lowercase letter, and one number</span>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="orgConfirmPassword">Confirm Password</label>
+                                <input type="password" id="orgConfirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="eventTypes">Event Types (Select all that apply)</label>
+                                <div class="interests-container">
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="concerts" name="eventTypes[]" value="concerts">
+                                        <label for="concerts">Concerts & Performances</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="conferences" name="eventTypes[]" value="conferences">
+                                        <label for="conferences">Conferences & Expos</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="workshops" name="eventTypes[]" value="workshops">
+                                        <label for="workshops">Workshops & Classes</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="festivals" name="eventTypes[]" value="festivals">
+                                        <label for="festivals">Festivals & Fairs</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="networking" name="eventTypes[]" value="networking">
+                                        <label for="networking">Networking & Social</label>
+                                    </div>
+                                    
+                                    <div class="interest-item">
+                                        <input type="checkbox" id="other" name="eventTypes[]" value="other">
+                                        <label for="other">Other</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group terms-group">
+                                <div class="terms-checkbox">
+                                    <input type="checkbox" id="orgTerms" name="terms" required>
+                                    <label for="orgTerms">I agree to the <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a>, and <a href="#">Organizer Guidelines</a></label>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn btn-primary">Create Organizer Account</button>
+                        </form>
+                        
+                        <div class="or-divider">
+                            <span>OR</span>
+                        </div>
+                        
+                        <div class="social-login">
+                            <button class="btn-social btn-google">
+                                <i class="fab fa-google"></i> Continue with Google
+                            </button>
+                            <button class="btn-social btn-facebook">
+                                <i class="fab fa-facebook-f"></i> Continue with Facebook
+                            </button>
+                        </div>
+                        
+                        <div class="login-link">
+                            <p>Already have an account? <a href="#">Log In</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Join Section -->
+    <section class="why-join">
+        <div class="container">
+            <h2>Why Join <span>EventHub</span></h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Discover Events</h3>
+                    <p>Find events tailored to your interests, location, and schedule.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3>Easy Ticketing</h3>
+                    <p>Purchase and store tickets seamlessly in one place.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3>Event Alerts</h3>
+                    <p>Get notified about events matching your interests and preferences.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Connect with Others</h3>
+                    <p>Meet like-minded people who share your passions and interests.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <img src="assets/logo.png" alt="EventHub Logo">
+                    <p>Your premier platform for discovering and creating unforgettable event experiences.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="register.html">Register</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Blog</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Event Street, New York, NY 10001</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@eventhub.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 EventHub. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

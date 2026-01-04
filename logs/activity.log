@@ -1,0 +1,29 @@
+# Activity Log
+# This file contains registration and activity logs
+
+[2026-01-04 10:59:50] New attendee registered: omkarbagwale8767@gmail.com (ID: 1)
+[2026-01-04 10:59:50] Welcome email sent to omkarbagwale8767@gmail.com (omkar bagwale - Attendee)
+[2026-01-04 10:06:14] User login successful: omkarbagwale8767@gmail.com
+[2026-01-04 10:06:32] User login successful: omkarbagwale8767@gmail.com
+[2026-01-04 11:15:13] User logout: omkarbagwale8767@gmail.com
+[2026-01-04 11:16:03] User login successful: omkarbagwale8767@gmail.com (Role: attendee)
+[2026-01-04 11:17:11] User logout: omkarbagwale8767@gmail.com
+[2026-01-04 11:18:09] New organizer registered: om0675741@gmail.com (ID: 2, Org: kiti party)
+[2026-01-04 11:18:09] Welcome email sent to om0675741@gmail.com (anjali katpure - Organizer)
+[2026-01-04 11:18:23] User login successful: om0675741@gmail.com (Role: organizer)
+[2026-01-04 11:27:56] User logout: om0675741@gmail.com
+[2026-01-04 11:28:24] User login successful: om0675741@gmail.com (Role: organizer)
+[2026-01-04 11:46:03] User login successful: om0675741@gmail.com (Role: organizer)
+[2026-01-04 11:46:18] User logout: om0675741@gmail.com
+[2026-01-04 14:55:11] User login successful: omkarbagwale8767@gmail.com (Role: attendee)
+[2026-01-04 14:55:38] User logout: omkarbagwale8767@gmail.com
+[2026-01-04 14:55:51] User login successful: om0675741@gmail.com (Role: organizer)
+[2026-01-04 15:00:11] User login successful: omkarbagwale8767@gmail.com (Role: attendee)
+[2026-01-04 15:00:44] Event deleted: Test Event 15:00:20 (ID: 3) by user test@example.com
+[2026-01-04 15:00:48] Event deleted: Test Event 14:59:02 (ID: 2) by user test@example.com
+[2026-01-04 15:00:52] Event deleted: Test Event 14:58:47 (ID: 1) by user test@example.com
+[2026-01-04 15:02:18] Event created: dance party (ID: 4) by user test@example.com
+[2026-01-04 15:04:55] Event created: kiti party (ID: 5) by user test@example.com
+[2026-01-04 15:06:26] User logout: test@example.com
+[2026-01-04 15:06:37] User login successful: omkarbagwale8767@gmail.com (Role: attendee)
+[2026-01-04 15:23:45] User logout: omkarbagwale8767@gmail.com
